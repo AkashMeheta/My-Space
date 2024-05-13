@@ -38,8 +38,9 @@ export class Authentication{
         try {
             return await this.account.get();   
         } catch (error) {
-            throw error;
+            console.log("Get Current use Error: ", error);
         }
+        return null;
     }
 
     async logOut(){
