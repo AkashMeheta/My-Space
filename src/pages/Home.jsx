@@ -24,7 +24,7 @@ const Home = () => {
                                 Login to read posts
                             </h1>
                             <Button>
-                                <Link to="./Login">Login Now</Link>
+                                <Link to="/login">Login Now</Link>
                             </Button>
                         </div>
                     </div>

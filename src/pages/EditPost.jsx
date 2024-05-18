@@ -17,7 +17,7 @@ const EditPost = () => {
                 }
             })
         }else{
-            navigate("./")
+            navigate("/")
         }
     }, [slug, navigate])
 
