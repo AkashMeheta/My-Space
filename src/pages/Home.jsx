@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import service from "../appwrite/services"
 import { Container, PostCard, Button } from "../components/index"
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const Home = () => {
 
@@ -13,6 +14,9 @@ const Home = () => {
             }
         })
     }, [])
+    const loginStatus = useSelector((state) => state.auth.status)
+    
+
 
     if (posts.length === 0) {
         return (
@@ -23,9 +27,9 @@ const Home = () => {
                             <h1 className="text-2xl font-bold hover:text-gray-500">
                                 Login to read posts
                             </h1>
-                            <Button>
+                            {!loginStatus && <Button>
                                 <Link to="/login">Login Now</Link>
-                            </Button>
+                            </Button>}
                         </div>
                     </div>
                 </Container>

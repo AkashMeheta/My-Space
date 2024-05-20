@@ -9,10 +9,11 @@ import { useForm } from 'react-hook-form'
 const SignUp = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { register, handelSubmit } = useForm()
+    const { register, handleSubmit } = useForm()
     const [error, setError] = useState("");
 
     const submitMethod = async (data) => {
+        console.log("From submit Method", data)
         setError("")
         try {
             const newUserData = await authServices.createAccount(data);
@@ -24,6 +25,7 @@ const SignUp = () => {
                 navigate("/")
             }
         } catch (error) {
+            console.log("From submit Method", error)
             setError(error.message)
         }
     }
@@ -46,7 +48,7 @@ const SignUp = () => {
                     </Link>
                 </p>
                 {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-                <form onSubmit={handelSubmit(submitMethod)}>
+                <form onSubmit={handleSubmit(submitMethod)}>
                     <div className='space-y-5'>
                         <Input
                             label="Name"
