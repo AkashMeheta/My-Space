@@ -1,5 +1,5 @@
 import config from '../config/config';
-import { Client, Account, ID } from "appwrite";
+import { Client, Account, ID, Query } from "appwrite";
 
 
 export class AuthService {
@@ -13,6 +13,8 @@ export class AuthService {
         this.account = new Account(this.client);
             
     }
+
+
 
     async createAccount({email, password, name}) {
         try {
@@ -45,6 +47,8 @@ export class AuthService {
 
         return null;
     }
+
+   
 
     async logout() {
 

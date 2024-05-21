@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, RTE, Select } from "..";
 import appwriteService from "../../appwrite/services";
+import authService from "../../appwrite/auth";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -17,6 +18,7 @@ export default function PostForm({ post }) {
 
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
+    console.log(userData)
 
     const submit = async (data) => {
         console.log("Submitted", data)
@@ -42,7 +44,7 @@ export default function PostForm({ post }) {
                 const fileId = file.$id;
                 data.featuredImage = fileId;
                 const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id });
-
+                
                 if (dbPost) {
                     navigate(`/post/${dbPost.$id}`);
                 }
@@ -108,6 +110,12 @@ export default function PostForm({ post }) {
                         />
                     </div>
                 )}
+                <Input
+                    label="Written by"
+                    type="text"
+                    className="mb-4"
+                    {...register("writer", {required: true})}
+                />
                 <Select
                     options={["active", "inactive"]}
                     label="Status"

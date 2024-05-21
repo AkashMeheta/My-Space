@@ -1,13 +1,8 @@
-import React, { useEffect} from 'react'
+import React from 'react'
 import appwriteService from "../appwrite/services"
 import {Link} from 'react-router-dom'
 
 function PostCard({$id, title, featuredImage}) {
-  
-    useEffect(()=>{
-      console.log("From PostCard: ", featuredImage)
-      console.log(appwriteService.getFilePreview(featuredImage))
-    }, [])
   
     return (
       <Link to={`/post/${$id}`}>
